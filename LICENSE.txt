@@ -1,0 +1,17 @@
+PapierZen — Licence
+
+Copyright (c) 2026 PapierZen. Tous droits réservés.
+
+Le code source, les textes, le graphisme, les icônes, la marque « PapierZen »
+et l'ensemble des fichiers de ce dépôt sont protégés par le droit d'auteur.
+
+Aucune licence d'utilisation, de copie, de modification, de distribution,
+de republication ou de création d'œuvre dérivée n'est accordée, en tout ou
+partie, sans l'autorisation écrite préalable du titulaire des droits.
+
+L'accès public à ces fichiers (par exemple pour permettre l'affichage du site)
+ne constitue pas une autorisation de les réutiliser.
+
+PapierZen — Copyright (c) 2026. All rights reserved.
+No permission is granted to copy, modify, distribute, republish or create
+derivative works from any part of this project without prior written consent.
