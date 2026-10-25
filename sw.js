@@ -2,7 +2,7 @@
 // Il ne met en cache que les fichiers de l'application, jamais vos données.
 // Changez le numéro de version ci-dessous à chaque mise à jour de l'application.
 const CACHE = 'papierzen-v1';
-const SHELL = ['./', 'index.html', 'manifest.json', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png', 'icons/apple-touch-icon.png'];
+const SHELL = ['./', 'index.html', 'manifest.json', 'icon.svg', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)));
