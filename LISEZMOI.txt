@@ -1,0 +1,24 @@
+PapierZen - version installable
+================================
+
+Contenu du dossier
+  index.html        l'application
+  manifest.json     la "carte d'identité" de l'application (nom, icône, couleurs)
+  sw.js             permet d'ouvrir l'application sans connexion
+  icons/            les icônes
+
+Mettre en ligne avec GitHub Pages (gratuit)
+  1. Sur github.com, créez un dépôt public nommé "papierzen".
+  2. Cliquez sur "uploading an existing file" et glissez-y TOUT le contenu de ce
+     dossier (index.html, manifest.json, sw.js et le dossier icons), puis "Commit changes".
+  3. Settings > Pages > Source : "Deploy from a branch" > Branch : main, dossier /(root) > Save.
+  4. Après 1 à 2 minutes, l'application est disponible à l'adresse :
+     https://VOTRE-PSEUDO-EN-MINUSCULES.github.io/papierzen/
+
+Installer sur le téléphone
+  Android (Chrome) : menu ⋮ > Installer l'application.
+  iPhone (Safari)  : bouton Partager > Sur l'écran d'accueil > Ajouter.
+
+Mettre à jour plus tard
+  Remplacez index.html sur GitHub. Si vous changez aussi des icônes ou sw.js,
+  augmentez le numéro de version dans sw.js (papierzen-v1 > papierzen-v2).
