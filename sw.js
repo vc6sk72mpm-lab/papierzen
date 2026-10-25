@@ -1,7 +1,7 @@
 // PapierZen — service worker : permet l'ouverture hors connexion.
 // Il ne met en cache que les fichiers de l'application, jamais vos données.
 // Changez le numéro de version ci-dessous à chaque mise à jour de l'application.
-const CACHE = 'papierzen-v9';
+const CACHE = 'papierzen-v10';
 const SHELL = ['./', 'index.html', 'manifest.json', 'icon.svg', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
@@ -35,4 +35,25 @@ self.addEventListener('fetch', e => {
       return res;
     }))
   );
+});
+
+// Notifications de rappel (le message est générique : le serveur ne connaît pas vos données).
+self.addEventListener('push', e => {
+  let d = {};
+  try { d = e.data ? e.data.json() : {}; } catch (x) { d = {}; }
+  e.waitUntil(self.registration.showNotification(d.title || 'PapierZen', {
+    body: d.body || 'Ouvrez PapierZen pour voir votre rappel.',
+    icon: 'icon-192.png',
+    badge: 'icon-192.png',
+    tag: d.tag || 'papierzen-rappel',
+    data: { url: './' }
+  }));
+});
+
+self.addEventListener('notificationclick', e => {
+  e.notification.close();
+  e.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(list => {
+    for (const c of list) { if ('focus' in c) return c.focus(); }
+    return self.clients.openWindow('./');
+  }));
 });
