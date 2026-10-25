@@ -1,7 +1,7 @@
 // PapierZen — service worker : permet l'ouverture hors connexion.
 // Il ne met en cache que les fichiers de l'application, jamais vos données.
 // Changez le numéro de version ci-dessous à chaque mise à jour de l'application.
-const CACHE = 'papierzen-v14';
+const CACHE = 'papierzen-v15';
 const SHELL = ['./', 'index.html', 'manifest.json', 'icon.svg', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
