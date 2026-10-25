@@ -244,7 +244,7 @@ events.forEach(e=>{if(e.done||!e._u||!e.date)return;const r=e.remind||REMINDS[0]
 appointments.forEach(a=>{if(!a._u)return;const s=new Date(a.date+'T'+a.time);if(isNaN(s))return;add('r'+a._u+':h',new Date(s.getTime()-36e5),'Vous avez un rendez-vous dans 1 heure')});
 return out.sort((a,b)=>a.fire_at.localeCompare(b.fire_at)).slice(0,300)}
 async function syncReminders(force){if(!cloud||!unlocked||!pushOn())return;const list=buildReminders(),h=icsHash(JSON.stringify(list.map(x=>x.id))+cloud.uid);try{if(!force&&localStorage.getItem(REM_KEY)===h)return}catch(e){}
-let r=await api('/rest/v1/reminders?user_id=eq.'+cloud.uid+'&sent=eq.false',{method:'DELETE',headers:{Prefer:'return=minimal'}});if(!r.ok)throw new Error('Rappels : '+await errText(r));
+let r=await api('/rest/v1/reminders?user_id=eq.'+cloud.uid+'&sent=eq.false&fire_at=gt.'+encodeURIComponent(new Date().toISOString()),{method:'DELETE',headers:{Prefer:'return=minimal'}});if(!r.ok)throw new Error('Rappels : '+await errText(r));
 if(list.length){for(let i=0;i<list.length;i+=100){r=await api('/rest/v1/reminders',{method:'POST',headers:{...JSONH,Prefer:'resolution=ignore-duplicates,return=minimal'},body:JSON.stringify(list.slice(i,i+100).map(x=>({user_id:cloud.uid,...x})))});if(!r.ok)throw new Error('Rappels : '+await errText(r))}}
 try{localStorage.setItem(REM_KEY,h)}catch(e){}}
 async function enablePush(){if(!cloud)throw new Error('Connectez-vous à un compte en ligne d’abord.');if(!pushSupported())throw new Error('Cet appareil ou ce navigateur ne gère pas les notifications.');if(isIOS()&&!isStandalone())throw new Error('Sur iPhone, ajoutez d’abord PapierZen à l’écran d’accueil (Partager, puis « Sur l’écran d’accueil »), puis ouvrez-la depuis cette icône.');
